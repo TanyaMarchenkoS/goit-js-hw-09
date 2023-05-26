@@ -1,4 +1,4 @@
-const BG_CHANGE_FREQUENCY = 1000;
+const COLOR_CHANGE_TIME = 1000;
 let timerId = null;
 
 const startBtn = document.querySelector('button[data-start]');
@@ -6,8 +6,6 @@ const stopBtn = document.querySelector('button[data-stop]');
 
 startBtn.addEventListener('click', onStartBtn);
 stopBtn.addEventListener('click', onStopBtn);
-startBtn.classList.add('btnStart-color');
-stopBtn.classList.add('btnStop-color');
 // за замовчуванням на початку  кнопка стоп не активна
 stopBtn.disabled = true;
 
@@ -16,7 +14,7 @@ stopBtn.disabled = true;
 function onStartBtn() {
   timerId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
-  }, BG_CHANGE_FREQUENCY);
+  }, COLOR_CHANGE_TIME);
 
   startBtn.disabled = true;
   stopBtn.disabled = false;

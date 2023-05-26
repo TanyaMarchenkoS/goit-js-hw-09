@@ -17,24 +17,25 @@ img {
   max-width: 100%;
 }
 
-.btnStart-color{
-  width: 60px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-
+.timer {
+  margin: 5px 10px;
+  display: flex;
+  gap: 30px;
 }
 
-.btnStop-color{
-  width: 60px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 55%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-
+.field {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
 }
+
+.label {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.value {
+  text-align: center;
+  font-size: 40px;
+}
+
