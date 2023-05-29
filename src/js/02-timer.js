@@ -25,15 +25,13 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  //цей метод спрацює після того, як користувач обрав дату і закрив календар
+  //користувач обрав дату і закрив календар
   onClose(selectedDates) {
     console.log(selectedDates);
     if (Date.now() > selectedDates[0]) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       Notiflix.Notify.success('Success');
-      //робимо кнопку активною
-      //викликаємо тут метод setTargetDate і передаємо йому ту дату, що обрав користувач
       startBtn.disabled = false;
       timer.setTargetDate(selectedDates[0]);
     }
@@ -41,12 +39,7 @@ const options = {
   },
 };
 
-//робимо екземпляр бібліотеки (ініціалізація), в змінну fp потрібно записувати,
-//якщо потрібно використовувати методи самої біблітеки (інтерфейс екземпляра)
-
 flatpickr('input#datetime-picker', options);
-//у fp.selectedDates[0] буде обрана користувачем дата
-// const fp = flatpickr('input#datetime-picker', options);
 
 //створення класу countDownTimer
 class CountDownTimer {
@@ -75,10 +68,6 @@ class CountDownTimer {
       this.minsSpan.textContent = this.addLeadingZero(minutes);
       this.secsSpan.textContent = this.addLeadingZero(seconds);
 
-      //потрібно, щоб було < 1000ms
-      //delta ніколи не буде рівна 0 (завджи є похибка)
-      //зупинка таймера, коли delta менше 1 секунди
-      //робимо інпут знову активним
       if (delta < 1000) {
         clearInterval(intervalId);
         Notiflix.Notify.success('Countdown finished!');
@@ -88,7 +77,6 @@ class CountDownTimer {
   }
 
   //метод, що приймає значення в мілісекундах і повертає days, hours, minutes, seconds
-  //'Адская копипаста со стека' (від індуса)
   convertMs(ms) {
     const second = 1000;
     const minute = second * 60;
@@ -112,13 +100,10 @@ class CountDownTimer {
 //ініціалізація таймера (створення екземпляру класу countDownTimer)
 const timer = new CountDownTimer({
   selector: '.timer',
-  //у fp.selectedDates[0] буде обрана користувачем дата
-  // targetDate: fp.selectedDates[0],
-  // targetDate: fp.selectedDates[0].getTime(),
+ 
 });
 
-//при кліку на кнопку викликаємо timer
-//робимо кнопку і інпут неактивними
+//при кліку на кнопку викликаємо timer, робимо кнопку, інпут неактивними
 function onStartBtnClick() {
   timer.updateMarkup();
   startBtn.disabled = true;
